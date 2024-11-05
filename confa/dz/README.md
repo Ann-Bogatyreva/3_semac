@@ -29,6 +29,11 @@
    ```
    python zip_shell.py
    ```
+## **3.1 Копирование проекта**
+ ```
+git clone [<URL репозитория>](https://github.com/Ann-Bogatyreva/3_semac)
+cd 3_semac/confa/dz
+ ```
 ## **4.Примеры использования в виде скриншотов**
 ![изображение](https://github.com/user-attachments/assets/b87c3180-5765-40cb-9286-e805c5f8fedc)
 
