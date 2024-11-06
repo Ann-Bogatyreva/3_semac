@@ -31,7 +31,7 @@
    ```
 ## **3.1 Копирование проекта**
  ```
-git clone [<https://github.com/Ann-Bogatyreva/3_semac>]
+git clone https://github.com/Ann-Bogatyreva/3_semac
 cd 3_semac/confa/dz
  ```
 ## **4.Примеры использования в виде скриншотов**
