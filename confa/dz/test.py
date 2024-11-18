@@ -1,63 +1,78 @@
-import pytest
+import unittest
+import tkinter as tk
 from zipfile import ZipFile
-import os
+from io import BytesIO
+from main import EmulatorGUI  # Замените your_script_name на имя вашего файла
 
-# Тестируемая функция (в вашем случае это основной код)
-def test_zip_commands():
-    # Создаем временный zip-файл для тестирования
-    zip_file_path = "test.zip"
 
-    # Создаем zip-файл и добавляем некоторые файлы
-    with ZipFile(zip_file_path, 'w') as myzip:
-        myzip.writestr("file1.txt", "Hello World!")
-        myzip.writestr("dir1/file2.txt", "Hello from dir1!")
-        myzip.writestr("dir2/file3.txt", "Hello from dir2!")
+class TestEmulatorGUI(unittest.TestCase):
+    def setUp(self):
+        # Создаем временный ZIP-файл в памяти
+        self.test_zip = BytesIO()
+        with ZipFile(self.test_zip, 'w') as zipf:
+            zipf.writestr("dir1/file1.txt", "Content of file1")
+            zipf.writestr("dir1/file2.txt", "Content of file2")
+            zipf.writestr("dir2/file3.txt", "Content of file3")
 
-    # Теперь мы можем тестировать команды
-    with ZipFile(zip_file_path, 'a') as myzip:
-        current_dir = ""
+        self.test_zip.seek(0)
 
-        # Тест команды ls
-        items = set()
-        for name in myzip.namelist():
-            if name.startswith(current_dir):
-                relative_name = name[len(current_dir):].split('/')[0]
-                items.add(relative_name)
-        assert sorted(items) == sorted(["dir1", "dir2", "file1.txt"])
+        # Создаем интерфейс, связанный с этим ZIP-файлом
+        self.root = tk.Tk()
+        self.app = EmulatorGUI(self.root)
+        self.app.myzip = ZipFile(self.test_zip, 'a')  # Используем тестовый ZIP
 
-        # Тест команды cat
-        content = myzip.read("file1.txt").decode()
-        assert content == "Hello World!"
+    def tearDown(self):
+        self.app.myzip.close()
+        self.root.destroy()
 
-        # Тест команды cd
-        current_dir = "dir1/"
-        items = set()
-        for name in myzip.namelist():
-            if name.startswith(current_dir):
-                relative_name = name[len(current_dir):].split('/')[0]
-                items.add(relative_name)
-        assert sorted(items) == sorted(["file2.txt"])
+    def test_ls(self):
+        self.app.entry.insert(0, "ls")
+        self.app.process_command(None)
+        output = self.app.output.get(1.0, tk.END).strip()
+        self.assertIn("dir1", output)
+        self.assertIn("dir2", output)
 
-        # Тест команды du
-        def get_dir_size(myzip, dir_path):
-            total_size = 0
-            for name in myzip.namelist():
-                if name.startswith(dir_path):
-                    info = myzip.getinfo(name)
-                    total_size += info.file_size
-            return total_size
+    def test_cd(self):
+        self.app.entry.insert(0, "cd dir1")
+        self.app.process_command(None)
+        self.assertEqual(self.app.current_dir, "dir1/")
 
-        size = get_dir_size(myzip, current_dir)
-        assert size == len("Hello from dir1!")  # Размер содержимого file2.txt
+        self.app.entry.insert(0, "ls")
+        self.app.process_command(None)
+        output = self.app.output.get(1.0, tk.END).strip()
+        self.assertIn("file1.txt", output)
+        self.assertIn("file2.txt", output)
 
-        # Тест команды touch
-        new_file = "dir1/new_file.txt"
-        if new_file not in myzip.namelist():
-            myzip.writestr(new_file, "")
-            assert new_file in myzip.namelist()
+    def test_cat(self):
+        self.app.entry.insert(0, "cat dir1/file1.txt")
+        self.app.process_command(None)
+        output = self.app.output.get(1.0, tk.END).strip()
+        self.assertIn("Content of file1", output)
 
-    # Удаляем временный zip-файл после тестирования
-    os.remove(zip_file_path)
+    def test_touch(self):
+        self.app.entry.insert(0, "touch new_file.txt")
+        self.app.process_command(None)
+        output = self.app.output.get(1.0, tk.END).strip()
+        self.assertIn("Файл new_file.txt создан", output)
+
+        # Проверяем, что файл появился в ZIP
+        self.assertIn("new_file.txt", self.app.myzip.namelist())
+
+    def test_du(self):
+        self.app.entry.insert(0, "cd dir1")
+        self.app.process_command(None)
+
+        self.app.entry.insert(0, "du")
+        self.app.process_command(None)
+        output = self.app.output.get(1.0, tk.END).strip()
+        self.assertIn("Размер текущей директории", output)
+
+    def test_invalid_command(self):
+        self.app.entry.insert(0, "invalid_cmd")
+        self.app.process_command(None)
+        output = self.app.output.get(1.0, tk.END).strip()
+        self.assertIn("Неизвестная команда", output)
+
 
 if __name__ == "__main__":
-    pytest.main()
+    unittest.main()
