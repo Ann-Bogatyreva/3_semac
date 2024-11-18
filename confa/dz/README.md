@@ -24,10 +24,10 @@
 ## **3. Описание команд для сборки проекта**
 1. Убедитесь, что у вас установлен Python (рекомендуется версия 3.6 или выше).
 2. Убедитесь, что у вас есть файл rar.zip в текущей директории для работы с ним или создайте новый ZIP-архив с таким именем.
-3. Сохраните код в файл с расширением .py, например, zip_shell.py.
+3. Сохраните код в файл с расширением .py, например, python gui_emulator.py
 4. Запустите скрипт в терминале или командной строке с помощью следующей команды:
    ```
-   python zip_shell.py
+   python gui_emulator.py
    ```
 ## **3.1 Копирование проекта**
  ```
@@ -35,10 +35,9 @@ git clone https://github.com/Ann-Bogatyreva/3_semac
 cd 3_semac/confa/dz
  ```
 ## **4.Примеры использования в виде скриншотов**
-![изображение](https://github.com/user-attachments/assets/b87c3180-5765-40cb-9286-e805c5f8fedc)
-
+![image](https://github.com/user-attachments/assets/c067491a-ab9a-4c17-aaf5-4585715a6991)
 ## **5.Запуск тестов**
 ```
 test.py
 ```
-![изображение](https://github.com/user-attachments/assets/e91aa85a-23df-4220-a2c0-0433dcb6b85d)
+![image](https://github.com/user-attachments/assets/058b2590-70c1-491c-9619-0b33c916eadf)
