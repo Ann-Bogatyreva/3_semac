@@ -35,7 +35,16 @@ git clone https://github.com/Ann-Bogatyreva/3_semac
 cd 3_semac/confa/dz
  ```
 ## **4.Примеры использования в виде скриншотов**
-![image](https://github.com/user-attachments/assets/c067491a-ab9a-4c17-aaf5-4585715a6991)
+Пример работы программы с командой ls:
+![image](https://github.com/user-attachments/assets/5393f52b-98ee-436a-bbe2-62751b5899b8)
+Пример работы программы с командой cd:
+![image](https://github.com/user-attachments/assets/040e0751-0cd0-434f-a5c1-4b0d462ac236)
+Пример работы программы с командой du:
+![image](https://github.com/user-attachments/assets/1b7fcdd5-fa38-4105-b544-b296aec34892)
+Пример работы программы с командой touch:
+![image](https://github.com/user-attachments/assets/4b872aa0-6184-44eb-baf5-840f3133b71a)
+Пример работы программы с командой exit:
+![image](https://github.com/user-attachments/assets/1aa36e92-1ce2-43d7-b3ad-93518af6fb88)
 ## **5.Запуск тестов**
 ```
 test.py
