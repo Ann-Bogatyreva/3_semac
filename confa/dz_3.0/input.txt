@@ -1,8 +1,0 @@
-CONST := 'A'
-PI := 3.14
-result := |CONST ord|
-C := |PI 2 *|
-c = C;
-value = result;
-numbers = [1; 2; CONST];
-data = { key = 'value'; another = PI; }
