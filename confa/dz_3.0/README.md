@@ -38,9 +38,11 @@
 ## **3. Описание команд для сборки проекта**
 1. Убедитесь, что у вас установлен Python (рекомендуется версия 3.6 или выше).
 2. Убедитесь, что у вас есть папка "dz_3.0".
-3. Запустите скрипт в терминале или командной строке с помощью следующей команды:
+3. Запустите скрипт в терминале или командной строке с помощью одной из следующих команд:
    ```
    python main.py < input.txt > output.toml
+   python main.py < in.txt > output.toml
+   python main.py < comm.txt > output.toml
    ```
 4. Откройте файл "output.toml", он находится в установленной ранее папке.
 ## **3.1 Копирование проекта**
@@ -50,4 +52,15 @@ cd 3_semac/confa/dz_3.0
  ```
 ## **4.Примеры использования в виде скриншотов**
 
-![image](https://github.com/user-attachments/assets/bb895c41-a325-4299-a520-63fb1e68026a)
+![image](https://github.com/user-attachments/assets/9c58beda-aa17-4b17-85ce-7ec830116cf9)
+
+![image](https://github.com/user-attachments/assets/15569829-6b67-4763-95e1-7d02961c4027)
+
+![image](https://github.com/user-attachments/assets/53591abb-bf35-4cea-a21a-367730934f4c)
+
+## **5.Запуск тестов**
+```
+python test.py < input.txt > output.toml
+```
+
+![image](https://github.com/user-attachments/assets/e2c6516d-d426-437a-9bdb-fa157c5e3b7b)
