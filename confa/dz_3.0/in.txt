@@ -1,0 +1,8 @@
+PI := 3.14
+C := |PI 2 +|
+Y := |PI 2 *|
+V := |PI 2 -|
+c = C;
+y = Y;
+v = V;
+data = { another = PI; }

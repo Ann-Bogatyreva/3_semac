@@ -1,0 +1,10 @@
+(comment
+Это пример многострочного
+комментария, который будет
+игнорироваться программой.
+)
+CONST := 25
+result := |CONST sqrt|
+value = result;
+numbers = [1; 2; CONST];
+data = { key = 'value'; }
