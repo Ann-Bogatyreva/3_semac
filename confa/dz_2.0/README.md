@@ -17,7 +17,7 @@
 ## **3.1 Копирование проекта**
  ```
 git clone https://github.com/Ann-Bogatyreva/3_semac
-cd 3_semac/confa/dz
+cd 3_semac/confa/dz_2.0
  ```
 ## **4.Примеры использования в виде скриншотов**
 Пример работы программы с командной строкой:
